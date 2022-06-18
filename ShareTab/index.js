@@ -1,14 +1,26 @@
 window.onload=()=>{getParamFunction();document.getElementsByClassName("sk-cube-grid")[0].remove()}
 function getParamFunction(){
 	
-	for(var prm of (new URL(document.location)).searchParams){
+	var params = (new URL(document.location)).searchParams;
+	
+	var url = params.get('url[]');
+	var title = params.get('title[]');
+	
+	var contentAreaDiv = document.getElementById("contentAreaDiv");
+	
+	for(var i=0;i<url.length;i++){
+		var div = document.createElement("div");
+		div.className = "tab";
 		
-		console.log(
-			'name :', prm[0], ', value :', prm[1]
-		);
+		var a = document.createElement("a");
+		a.className = "clickable";
+		a.setAttribute("href",url[i]);
+		a.innerText = title[i];
+		
+		div.appendChild(a);
+		contentAreaDiv.appendChild(div);
 	}
 }
-//http://localhost:8000/?url[]=aaa&url[]=983217&
-//	"url[]=" + text + "&"
-
+//http://localhost:8000/?url[]=aaa&title[]=sioeuh&url[]=983217&title[]=86989879&
+//	"url[]=" + text + "&" + "title[]=" + text+ "&"
 
