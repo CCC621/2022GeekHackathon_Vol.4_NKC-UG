@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Sortable - Drop placeholder</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <style>
+  #sortable1, #sortable2, #sortable3 { list-style-type: none; margin: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 143px;}
+  #sortable1 li, #sortable2 li, #sortable3 li { margin: 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+  .node {
+    background: rgba(50%,50%,100%,0.5);
+    width: 200px;
+    border-radius: 6px;
+  }
+  </style>
+  <script>
+
+  function highlight(node) {
+    $(node.elem).css('background', 'rgba(100%,50%,50%,0.5)')
+    for (var i in node.children) {
+      highlight(node.children[i])
+    }
+  }
+
+  function removeHighlight(node) {
+    $(node.elem).css('background', 'rgba(50%,50%,100%,0.5)')
+    for (var i in node.children) {
+      removeHighlight(node.children[i])
+    }
+  }
+
+  function removeHighlightAll() {
+    removeHighlight(root)
+  }
+
+  function Node(id) {
+    var children_list = $('<ul/>')
+        .attr('class', 'children')
+        .css('padding', '15px')
+
+    var node = $('<li/>')
+      .attr('id', id)
+      .text('node: ' + id)
+      .css('list-style-type', 'none')
+      .css('background', 'rgba(50%,50%,100%,0.5)')
+      .css('width', '200px')
+      .css('border-radius', '6px')
+      .hover(
+          function(e) {
+            console.log('hover')
+            e.stopPropagation()
+            highlight(this)
+            //$(this).css('background', 'rgba(100%,50%,50%,0.5)')
+          }.bind(this)
+          ,
+          function(e) {
+            e.stopPropagation()
+            $(this).css('background', 'rgba(50%,50%,100%,0.5)')
+          }
+          ,
+          removeHighlightAll
+          )
+      .append(children_list)
+
+    node.children_list = children_list
+
+    return node
+  }
+
+  $(function() {
+    $( "ul.droptrue" ).sortable({
+      connectWith: "ul"
+    });
+    $( "ul.dropfalse" ).sortable({
+      connectWith: "ul",
+      //dropOnEmpty: false
+    });
+    $( "#sortable1, #sortable2, #sortable3" ).disableSelection();
+    $(".node").hover(function() {
+      $(this).css("background", "rgba(50%,50%,0%,0.5)");
+    },
+    function() {
+      $(this).css("background", "rgba(50%,50%,100%,0.5)");
+    });
+
+    $(".sortable").css('padding', '5px').sortable({
+      connectWith: "ul",
+      stop: function() {
+        console.log('sorted');
+        $("#sortable4 li").each(function(i, el) {
+          console.log(i);
+          console.log(el);
+        });
+      }
+    });
+
+  function Children(node) {
+    return node.children('ul')
+  }
+
+  root = Node('root')
+  for (var i = 0; i < 10; i++) {
+    root.children_list.append(Node('new item ' + i))
+  }
+
+  children = root.children_list.children()
+  console.log(children)
+  console.log(children[0])
+  console.log($(children[0]))
+  $($(children[0]).children('ul')[0]).append(Node('grandson'))
+
+  // css('padding', '10px').sortable({
+  //        connectwith: 'ul',
+  //      })
+  //$('.sortable
+
+
+  $(document.body).append(root)
+
+  $('.children').sortable({
+    connectWith: 'ul',
+    update: function() {
+      console.log('update')
+      children_ids = $(this).sortable('toArray')
+      console.log(children_ids)
+    }
+  })
+
+  });
+  </script>
+</head>
+<body>
+
+<ul id="sortable1" class="droptrue">
+  <li class="ui-state-default">Can be dropped..</li>
+  <li class="ui-state-default">..on an empty list</li>
+  <li class="ui-state-default">Item 3</li>
+  <li class="ui-state-default">Item 4</li>
+  <li class="ui-state-default">
+  </li>
+</ul>
+
+<ul id="sortable2" class="droptrue">
+   <li class="ui-state-highlight">Cannot be dropped..</li>
+   <li class="ui-state-highlight">..on an empty list</li>
+   <li class="ui-state-highlight">Item 3</li>
+   <li class="ui-state-highlight">Item 4</li>
+   <li class="ui-state-highlight">Item 5</li>
+</ul>
+
+<ul id="sortable3" class="droptrue">
+</ul>
+
+<br style="clear:both">
+
+<ul class="sortable">
+  <li class="node"> My Item 1 <ul class="sortable"> <li class="node"> subitem</li></ul></li>
+  <li class="node"> My Item 2 </li>
+  <li class="node"> My Item 3 </li>
+  <li class="node"> My Item 4 </li>
+  <li class="node"> My Item 5 </li>
+  <li class="node"> My Item 6 </li>
+</ul>
+
+</body>
+</html>
