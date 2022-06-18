@@ -1,0 +1,21 @@
+{
+  "name": "tabhistory",
+  "version": "0.0",
+  "description": "Visualize your chrome tab history as a tree",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd src && zip -r -X ../build.zip ./* && cd .."
+  },
+  "repository": {
+    
+  },
+  "keywords": [
+    "histree",
+    "tree",
+    "history",
+    "chrome",
+    "extension"
+  ],
+  "license": "MIT"
+}
