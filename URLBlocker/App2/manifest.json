@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Sample extension",
+  "version": "1.0.0",
+  "description": "拡張機能のサンプルです。",
+
+  "content_scripts": [
+    {
+      "matches": [ "<all_urls>" ],   // Content Scriptを実行するURL（この場合はあらゆるURLで実行）
+      "js": [ "script.js" ]   // 上記URLへのアクセス時に実行されるスクリプト
+    }
+  ],
+  
+  "options_ui": {
+    "page": "options.html"   // オプションページを指定
+  },
+  "permissions": [ "storage" ]   // オプションページでデータを保存するのでstorageを設定
+}

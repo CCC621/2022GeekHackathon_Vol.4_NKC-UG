@@ -1,5 +1,5 @@
 // テストよう
-let pattern = /https:\/\/www.youtube.com\/*/;
+let pattern = /https:\/\/www.youtube.com\/*;
 
 chrome.runtime.onMessage.addListener((message, sender, response) => {
     response({

@@ -7,6 +7,9 @@
   "description": "__MSG_appDesc__",
   "incognito": "spanning",
   
+  "declarative_net_request": {
+    "rule_resources" : []
+  },
   
   "icons": {
     "16": "public/images/icon16.png",
@@ -17,7 +20,14 @@
   
   "permissions": [
     "tabs",
-    "storage"
+    "declarativeNetRequest",
+    "storage",
+    "unlimitedStorage",
+    "contextMenus",
+    "notifications",
+    "webRequest",
+    "webNavigation",
+    "cookies"
   ],
   
   "options_page": "public/options.html",
