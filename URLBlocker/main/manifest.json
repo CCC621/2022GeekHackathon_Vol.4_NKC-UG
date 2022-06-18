@@ -1,0 +1,17 @@
+{
+  "name": "URLBlocker",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "description": "Exsample Chrome Extension",
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "./js/script.js"
+      ]
+    }
+  ]
+}
