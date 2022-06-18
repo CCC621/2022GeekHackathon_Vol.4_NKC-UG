@@ -1,6 +1,6 @@
 
-window.addEventListener('load', () => {
-    chrome.runtime.sendMessage('load', response => {
+document.addEventListener("DOMContentLoaded", ()=>{
+	chrome.runtime.sendMessage('load', response => {
        // console.dir(response);
     })
-})
+} );
