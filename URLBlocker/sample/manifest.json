@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "URLBlocker",
+    "version": "1.0.0",
+    "description": "Exsample Chrome Extension",
+
+    "background": {
+        "scripts": [ "./js/background.js" ],
+        "persistent": false
+    },
+    
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["./js/event.js"]
+      }
+    ],
+    
+    "permissions": ["tabs"]
+}
