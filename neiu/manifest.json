@@ -20,6 +20,8 @@
     "storage"
   ],
   
+  
+  
   "options_page": "public/options.html",
   
   "action": {
