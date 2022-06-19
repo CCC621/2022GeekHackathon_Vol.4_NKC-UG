@@ -1,0 +1,14 @@
+{
+  "appName" : {
+    "message" : "URLBlocker ～表示したくないサイトを完全にブロック！～ ",
+    "description" : "Web ストアに表示されるアプリケーションのタイトル。"
+  },
+  "appShortName" : {
+    "message" : "URLBlocker",
+    "description" : "アプリケーションの短いタイトル"
+  },
+  "appDesc" : {
+    "message" : "指定したURLにアクセスしようとするとブロックしてくれます ※Exsample Chrome Extension",
+    "description" : "Web ストアに表示されるアプリケーションの説明。"
+  }
+}
