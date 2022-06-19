@@ -201,16 +201,20 @@
 		</div>
 		
 		<script type="text/javascript">
-				window.onload=()=>{getParamFunction();document.getElementsByClassName("sk-cube-grid")[0].remove()}
-		function getParamFunction(){
+				window.onload=()=>{setUrlsFunction();document.getElementsByClassName("sk-cube-grid")[0].remove()}
+		function setUrlsFunction(){
 			
-			var params = (new URL(document.location)).searchParams;
-			
-			var url = params.get('url[]');
-			var title = params.get('title[]');
-			url = ["https://www.google.com","https://www.youtube.com"];
-			title = ["ぐうぐる","ようつべ"];
-			
+			var url = [];
+			var title = [];
+				
+			chrome.storage.sync.get('pageurl', function (items) {
+				var pages = items.pageurl.split('\n');
+				for(var i=0;i<pages.length;i++){
+					var p = pages[i].split(' | ');
+					url.push(p[0])
+					title.push([1])
+				}});
+				
 			var contentAreaDiv = document.getElementById("contentAreaDiv");
 			
 			for(var i=0;i<url.length;i++){
