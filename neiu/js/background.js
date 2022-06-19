@@ -1,5 +1,5 @@
 chrome.runtime.onMessage.addListener((message, sender, response) => {
-	
+	response();
 	//タブのurlを取得
 	//console.log(sender.tab.url);
 	
@@ -8,6 +8,8 @@ chrome.runtime.onMessage.addListener((message, sender, response) => {
 	
 	chrome.storage.local.get('urls', function (items) {
 		//console.log(items.urls);
+		if(typeof items.urls === "undefined")
+			return;
 		
 		const urls = Array.from(new Set(items.urls.split('`')));
 		//console.log(urls)
@@ -29,8 +31,9 @@ chrome.runtime.onMessage.addListener((message, sender, response) => {
 				}
 			}
 		}
+		
 	});
 	
-	response();
+	
 })
 

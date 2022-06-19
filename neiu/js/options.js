@@ -9,32 +9,34 @@ function loadFunction(){
 		var title = [];
 		
 		//console.log(items.pageurl);
-		
-		var pages = Array.from(new Set(items.pageurl.split('\n')));
-		pages[0] = pages[0].split('^')[1];	
-		var txt = document.getElementById('txt');
-		txt.value = "";
-		
-		for(var i=0;i<pages.length;i++){
-			txt.value = txt.value + pages[i]
-			var p = pages[i].split(' | ');
-			url.push(p[0])
-			title.push(p[1])
-		}
-		
-		var contentAreaDiv = document.getElementById("contentAreaDiv");
+		if(items.pageurl){
+			console.log(items.pageurl)
+			var pages = Array.from(new Set(items.pageurl.split('\n')));
+			pages[0] = pages[0].split('^')[1];	
+			var txt = document.getElementById('txt');
+			txt.value = "";
+			
+			for(var i=0;i<pages.length;i++){
+				txt.value = txt.value + pages[i]
+				var p = pages[i].split(' | ');
+				url.push(p[0])
+				title.push(p[1])
+			}
+			
+			var contentAreaDiv = document.getElementById("contentAreaDiv");
 
-		for(var i=0;i<5;i++){
-			var div = document.createElement("div");
-			div.className = "tab";
-			
-			var a = document.createElement("a");
-			a.className = "clickable";
-			a.setAttribute("href",url[i]);
-			a.innerText = title[i];
-			
-			div.appendChild(a);
-			contentAreaDiv.appendChild(div);
+			for(var i=0;i<5;i++){
+				var div = document.createElement("div");
+				div.className = "tab";
+				
+				var a = document.createElement("a");
+				a.className = "clickable";
+				a.setAttribute("href",url[i]);
+				a.innerText = title[i];
+				
+				div.appendChild(a);
+				contentAreaDiv.appendChild(div);
+			}
 		}
 	});
 	
@@ -45,24 +47,25 @@ function loadFunction(){
 	chrome.storage.local.get('urls', function (items) {
 		//console.log(items.urls);
 		//undefined:domain1:domain2:domain3
-		const urls = Array.from(new Set(items.urls.split('`')));
+		if(items.urls){
+			const urls = Array.from(new Set(items.urls.split('`')));
+			
+			var contentAreaDiv = document.getElementById("app");
 		
-		var contentAreaDiv = document.getElementById("app");
-	
-		for(var i=1;i<urls.length;i++){
-			
-			var div = document.createElement("div");
-			div.className = "tab";
-			
-			var a = document.createElement("a");
-			a.className = "clickable";
-			a.setAttribute("href","https://"+urls[i].match(/^https?:\/{2,}(.*?)(?:\/|\?|#|$)/)[1]+"/");
-			a.innerText = urls[i].match(/^https?:\/{2,}(.*?)(?:\/|\?|#|$)/)[1];
-			
-			div.appendChild(a);
-			contentAreaDiv.appendChild(div);
+			for(var i=1;i<urls.length;i++){
+				
+				var div = document.createElement("div");
+				div.className = "tab";
+				
+				var a = document.createElement("a");
+				a.className = "clickable";
+				a.setAttribute("href","https://"+urls[i].match(/^https?:\/{2,}(.*?)(?:\/|\?|#|$)/)[1]+"/");
+				a.innerText = urls[i].match(/^https?:\/{2,}(.*?)(?:\/|\?|#|$)/)[1];
+				
+				div.appendChild(a);
+				contentAreaDiv.appendChild(div);
+			}
 		}
-	
 	});
 }
 
