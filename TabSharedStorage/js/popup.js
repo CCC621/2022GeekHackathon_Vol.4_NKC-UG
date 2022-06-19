@@ -19,7 +19,7 @@ window.addEventListener('load',()=>{
 	});
 	
 	
-	document.getElementById('save_button').addEventListener('click', Storage);
+	document.getElementById('Storage').addEventListener('click', Storage);
 })
 
 
@@ -27,7 +27,7 @@ window.addEventListener('load',()=>{
 function Storage(){
 	chrome.storage.sync.get('pageurl', function (items) {
 		var msg = items.pageurl + "^" + document.querySelector('#txt').value;
-		chrome.storage.sync.set({'urls': msg},()=>{});
+		chrome.storage.sync.set({'pageurl': msg},()=>{});
 		});
 	window.close();
 }

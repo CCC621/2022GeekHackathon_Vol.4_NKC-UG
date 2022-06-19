@@ -70,6 +70,12 @@
 			font-weight: 400;
 			font-size:14px;
 		}
+		
+		h1{
+			color: var(--link-color);
+			font-family: 'Joan', serif;
+			margin-left: 10px;
+		}
 
 		a {
 			color: var(--link-color);
@@ -183,7 +189,13 @@
 	</head>
 	
 	<body>
-		<div id="settingsDiv"></div>
+		
+		<div id="settingsDiv">
+			<h1>TabSharedStorage</h1>
+			<button id="Delete">削除</button>
+			<button id="Copy">エクスポート</button>
+			
+		</div>
 		
 		
 		<div id="contentAreaDiv"></div>
@@ -200,37 +212,10 @@
 			<div class="sk-cube sk-cube9"></div>
 		</div>
 		
-		<script type="text/javascript">
-				window.onload=()=>{setUrlsFunction();document.getElementsByClassName("sk-cube-grid")[0].remove()}
-		function setUrlsFunction(){
+		
+		<textarea id="txt" style="display:none" ></textarea>
 			
-			var url = [];
-			var title = [];
-				
-			chrome.storage.sync.get('pageurl', function (items) {
-				var pages = items.pageurl.split('\n');
-				for(var i=0;i<pages.length;i++){
-					var p = pages[i].split(' | ');
-					url.push(p[0])
-					title.push([1])
-				}});
-				
-			var contentAreaDiv = document.getElementById("contentAreaDiv");
-			
-			for(var i=0;i<url.length;i++){
-				var div = document.createElement("div");
-				div.className = "tab";
-				
-				var a = document.createElement("a");
-				a.className = "clickable";
-				a.setAttribute("href",url[i]);
-				a.innerText = title[i];
-				
-				div.appendChild(a);
-				contentAreaDiv.appendChild(div);
-			}
-			
-		}
-		</script>
+		<script src="../js/TabSharedStorage.js"></script>
+		
 	</body>
 </html>
