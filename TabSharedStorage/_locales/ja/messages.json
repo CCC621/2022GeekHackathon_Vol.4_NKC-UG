@@ -1,14 +1,14 @@
 {
   "appName" : {
-    "message" : "URLBlocker ～表示したくないサイトを完全にブロック！～ ",
+    "message" : "TabSharedStorage",
     "description" : "Web ストアに表示されるアプリケーションのタイトル。"
   },
   "appShortName" : {
-    "message" : "URLBlocker",
+    "message" : "TabSharedStorage",
     "description" : "アプリケーションの短いタイトル"
   },
   "appDesc" : {
-    "message" : "指定したURLにアクセスしようとするとブロックしてくれます ※Exsample Chrome Extension",
+    "message" : "ログインしているアカウント間でタブを共有できます ※Exsample Chrome Extension",
     "description" : "Web ストアに表示されるアプリケーションの説明。"
   }
 }
