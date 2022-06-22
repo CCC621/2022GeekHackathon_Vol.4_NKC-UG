@@ -1,14 +1,14 @@
 {
   "appName" : {
-    "message" : "URLBlocker ～表示したくないサイトを完全にブロック！～ ",
+    "message" : neiu ～開発者支援ツール～ ",
     "description" : "Web ストアに表示されるアプリケーションのタイトル。"
   },
   "appShortName" : {
-    "message" : "URLBlocker",
+    "message" : "neiu",
     "description" : "アプリケーションの短いタイトル"
   },
   "appDesc" : {
-    "message" : "指定したURLにアクセスしようとするとブロックしてくれます ※Exsample Chrome Extension",
+    "message" : "技育ハッカソンvpl4にて開発したものになります ※Exsample Chrome Extension",
     "description" : "Web ストアに表示されるアプリケーションの説明。"
   }
 }
